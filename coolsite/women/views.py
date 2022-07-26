@@ -18,7 +18,7 @@ def categories(request, catid):
 
 def archive(request, year):
     if int(year) > datetime.now().year:
-        return redirect('/', permanent=True)
+        return redirect('home', permanent=True)
 
     return HttpResponse(f'<h1>Архив по годам<h1/><p>{year}<p/>')
 
