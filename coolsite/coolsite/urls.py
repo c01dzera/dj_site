@@ -21,7 +21,6 @@ from coolsite import settings
 from women.views import pageNotFound
 
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('women.urls'))
