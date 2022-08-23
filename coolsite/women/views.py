@@ -2,9 +2,15 @@ from django.http import HttpResponse, Http404, HttpResponseNotFound
 from django.shortcuts import render, redirect
 from datetime import datetime
 
+menu = ['О Сайте', 'Добавить статью', 'Обратная связь', 'Войти']
+
 
 def index(request):
-    return render(request, 'women/index.html')
+    return render(request, 'women/index.html', {'menu': menu, 'title': 'Главная страница'})
+
+
+def about(request):
+    return render(request, 'women/about.html', {'menu': menu, 'title': 'О сайте'})
 
 
 def categories(request, catid):
@@ -25,5 +31,3 @@ def pageNotFound(request, exception):
     return HttpResponseNotFound('<h1>Страница не найдена<h1/>')
 
 
-def about(request):
-    return render(request, 'women/about.html')
