@@ -2,11 +2,9 @@ from django.http import HttpResponse, Http404, HttpResponseNotFound
 from django.shortcuts import render, redirect
 from datetime import datetime
 
-# Create your views here.
-
 
 def index(request):
-    return HttpResponse('<h1>Страница приложения women<h1/>')
+    return render(request, '')
 
 
 def categories(request, catid):
