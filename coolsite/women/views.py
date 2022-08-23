@@ -4,7 +4,7 @@ from datetime import datetime
 
 
 def index(request):
-    return render(request, '')
+    return render(request, 'women/index.html')
 
 
 def categories(request, catid):
@@ -23,3 +23,7 @@ def archive(request, year):
 
 def pageNotFound(request, exception):
     return HttpResponseNotFound('<h1>Страница не найдена<h1/>')
+
+
+def about(request):
+    return render(request, 'women/about.html')
