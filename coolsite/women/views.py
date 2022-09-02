@@ -4,30 +4,41 @@ from datetime import datetime
 
 from .models import *
 
-menu = ['О Сайте', 'Добавить статью', 'Обратная связь', 'Войти']
+menu = [{'title': 'О сайте', 'url_name': 'about'},
+        {'title': 'Добавить статью', 'url_name': 'add_page'},
+        {'title': 'обратная связь', 'url_name': 'contact'},
+        {'title': 'Войти', 'url_name': 'login'}
+]
 
 
 def index(request):
     posts = Women.objects.all()
-    return render(request, 'women/index.html', {'posts': posts, 'menu': menu, 'title': 'Главная страница'})
+    context = {
+        'posts': posts,
+        'menu': menu,
+        'title': 'Главная страница'
+    }
+    return render(request, 'women/index.html', context=context)
 
 
 def about(request):
     return render(request, 'women/about.html', {'menu': menu, 'title': 'О сайте'})
 
 
-def categories(request, catid):
-    if request.POST:
-        print(request.POST)
-
-    return HttpResponse(f'<h1>Статьи по категориям<h1/><p>{catid}<p/>')
+def add_page(request):
+    return HttpResponse('Добавление статьи')
 
 
-def archive(request, year):
-    if int(year) > datetime.now().year:
-        return redirect('home', permanent=True)
+def contact(request):
+    return HttpResponse('Обратная связь')
 
-    return HttpResponse(f'<h1>Архив по годам<h1/><p>{year}<p/>')
+
+def login(request):
+    return HttpResponse('Авторизация')
+
+
+def show_post(request, post_id):
+    return HttpResponse(f'{Women.objects.filter(pk=post_id)[0].content}')
 
 
 def pageNotFound(request, exception):
